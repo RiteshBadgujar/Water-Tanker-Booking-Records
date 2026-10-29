@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Water Tanker Booking</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;background: #6bd3e7;
+            margin: 0;
+            padding: 40px;
+        }
+
+        .container {
+            width: 400px;
+            margin: auto;
+            background: white;
+            padding: 25px;
+            border-top: 5px solid #287271;
+            box-shadow: 0 3px 12px #c7d0d0;
+        }
+
+        h2 {
+            text-align: center;
+            color: #245b59;
+        }
+
+        label {
+            display: block;
+            margin-top: 14px;
+            font-weight: bold;
+        }
+
+        input,
+        select {
+            width: 100%;
+            padding: 10px;
+            margin-top: 6px;
+            box-sizing: border-box;
+            border: 1px solid #b9c5c5;
+        }
+
+        button {
+            width: 100%;
+            padding: 11px;
+            margin-top: 22px;
+            background: #287271;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: #1e5655;
+        }
+    </style>
+
+    <script>
+        function validateForm() {
+            let selectedDate =
+                document.getElementById("booking_date").value;
+
+            let today = new Date();
+            let year = today.getFullYear();
+            let month = String(today.getMonth() + 1).padStart(2, "0");
+            let day = String(today.getDate()).padStart(2, "0");
+            let todayDate = year + "-" + month + "-" + day;
+
+            if (selectedDate === "") {
+                alert("Please select booking date");
+                return false;
+            }
+
+            if (selectedDate < todayDate) {
+                alert("Booking date cannot be in the past!");
+                return false;
+            }
+
+            return true;
+        }
+
+        window.onload = function () {
+            let today = new Date();
+            let year = today.getFullYear();
+            let month = String(today.getMonth() + 1).padStart(2, "0");
+            let day = String(today.getDate()).padStart(2, "0");
+
+            document.getElementById("booking_date").min =
+                year + "-" + month + "-" + day;
+        };
+    </script>
+</head>
+
+<body>
+
+    <div class="container">
+        <h2>Water Tanker Booking</h2>
+
+        <form action="result.jsp" method="post" onsubmit="return validateForm()">
+
+            <label>Name</label>
+            <input type="text" name="name" maxlength="40" placeholder="Enter your name" required>
+
+            <label>Area</label>
+            <input type="text" name="area" maxlength="30" placeholder="Enter your area" required>
+
+            <label>Booking Date</label>
+            <input type="date" id="booking_date" name="booking_date" required>
+
+            <label>Tanker Size</label>
+            <select name="size" required>
+                <option value="">Select Tanker Size</option>
+                <option value="5000 L">5000 L</option>
+                <option value="10000 L">10000 L</option>
+                <option value="12000 L">12000 L</option>
+            </select>
+
+            <button type="submit">Save Booking</button>
+        </form>
+    </div>
+
+</body>
+
+</html>

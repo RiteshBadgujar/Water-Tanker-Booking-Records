@@ -1,0 +1,11 @@
+CREATE DATABASE IF NOT EXISTS watertankdb1;
+USE watertankdb;
+
+CREATE TABLE IF NOT EXISTS tank (
+    id INT NOT NULL AUTO_INCREMENT,
+    name VARCHAR(100) NOT NULL,
+    area VARCHAR(100) NOT NULL,
+    `date` DATE NOT NULL,
+    tankerSize VARCHAR(20) NOT NULL,
+    PRIMARY KEY (id)
+);
